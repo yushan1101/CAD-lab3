@@ -87,6 +87,16 @@ async function searchCity(input) {
     state.weatherData = data;
 
     displayWeather(data);
+    saveRecentSearch(query);
+    getLocalTime(data.timezone);
+  }
+  catch (error) {
+      if (error.name === "AbortError") {
+        showError("Request timed out after 10 seconds.");
+      } else {
+        showError(error.message);
+      }
+    }
 }
 
 function displayWeather(data) {
