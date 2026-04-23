@@ -54,6 +54,45 @@ const forecastGrid = document.getElementById("forecastGrid");
 const recentSearches = document.getElementById("recentSearches");
 const unitButtons = document.querySelectorAll(".unit-btn");
 
+/*--------- Button click -----*/
+function bindEvents() {
+  searchBtn.addEventListener("click", () => searchCity(cityInput.value));
+
+  cityInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      searchCity(cityInput.value);
+    }
+  });
+
+  cityInput.addEventListener("input", () => {
+    clearTimeout(state.debounceTimer);
+    state.debounceTimer = setTimeout(() => {
+      if (cityInput.value.trim().length >= 2) {
+        searchCity(cityInput.value);
+      }
+    }, 500);
+  });
+
+  retryBtn.addEventListener("click", () => {
+    if (state.lastQuery) {
+      searchCity(state.lastQuery);
+    }
+  });
+
+  unitButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.unit = btn.dataset.unit;
+      unitButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      if (state.weatherData) {
+        displayWeather(state.weatherData);
+      }
+    });
+  });
+}
+
+/*-------- Search City --------*/
 async function searchCity(input) {
   const query = input.trim();
   state.lastQuery = query;
@@ -116,6 +155,24 @@ function displayWeather(data) {
     weatherDescription.textContent = data.current.text;
     humidity.textContent = `${data.current.humidity}%`;
     windSpeed.textContent = `${data.current.wind} km/h`;
+}
+
+function showValidation(message) {
+  validationMessage.textContent = message;
+  validationMessage.classList.remove("hidden");
+}
+
+function hideValidation() {
+  validationMessage.classList.add("hidden");
+}
+
+function showError(message) {
+  errorText.textContent = message;
+  errorBanner.classList.remove("hidden");
+}
+
+function hideError() {
+  errorBanner.classList.add("hidden");
 }
 
 function removeSkeleton(el) {
