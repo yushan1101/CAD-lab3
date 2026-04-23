@@ -137,3 +137,29 @@ header p {
   transform: translateY(-1px);
   opacity: 0.95;
 }
+
+/*--------- Temperature Toggle ------*/
+.unit-box {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.unit-btn {
+  min-width: 90px;
+  font-weight: bold;
+  background: #eef4ff;
+  color: var(--primary-dark);
+  border: 1px solid #d8e5ff;
+}
+
+.unit-btn:hover {
+  transform: translateY(-1px);
+}
+
+.unit-btn.active {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 8px 18px rgba(79, 140, 255, 0.22);
+}
