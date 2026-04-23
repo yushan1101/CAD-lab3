@@ -96,6 +96,12 @@ header p {
   margin-right: auto;
 }
 
+.search-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
 .search-box input {
   flex: 1;
   padding: 14px 16px;
@@ -272,6 +278,35 @@ header p {
 }
 
 /*--------- Weather Forecasting ----------*/
+.forecast-card-section {
+  overflow: hidden;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+}
+
+.forecast-card {
+  background: linear-gradient(to bottom, #ffffff, #f6f9ff);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: 0 5px 16px rgba(31, 45, 61, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(31, 45, 61, 0.09);
+}
+
+.forecast-card p {
+  margin: 8px 0;
+}
+
 
 .forecast-card .day-name {
   font-size: 15px;
