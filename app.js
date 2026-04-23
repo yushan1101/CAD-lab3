@@ -51,4 +51,22 @@ async function searchCity(input) {
   }
 
   showSkeleton();
+
+  try {
+    const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`;
+    const geoData = await fetchJson(geoUrl);
+
+    if (!geoData.results || geoData.results.length === 0) {
+      showValidation("City not found. Please try another city.");
+      clearDisplay();
+      return;
+    }
+
+    const city = geoData.results[0];
+
+    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
+    const weatherJson = await fetchJson(weatherUrl);
+
+    const data = formatWeatherData(city, weatherJson);
+    state.weatherData = data;
 }
