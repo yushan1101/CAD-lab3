@@ -1,15 +1,21 @@
 :root {
-  --bg-color: #f4f8ff;
-  --card-color: #ffffff;
+  --bg-color: #f3f7fd;
+  --card-color: rgba(255, 255, 255, 0.88);
   --primary-color: #4f8cff;
   --primary-dark: #2f6fe4;
+  --accent-color: #7c4dff;
   --text-color: #1f2d3d;
   --muted-color: #6b7a90;
-  --border-color: #dbe4f0;
+  --border-color: rgba(219, 228, 240, 0.9);
   --warning-bg: #fff4d6;
   --warning-text: #9a6b00;
   --error-bg: #ffe1e1;
   --error-text: #b42318;
+  --chip-bg: #eef4ff;
+  --shadow: 0 10px 30px rgba(31, 45, 61, 0.08);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
 }
 
 
@@ -32,26 +38,34 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: var(--bg-color);
   color: var(--text-color);
+  background:
+    radial-gradient(circle at top left, #dbeafe 0%, transparent 30%),
+    radial-gradient(circle at top right, #ede9fe 0%, transparent 28%),
+    linear-gradient(to bottom, #eff5ff, #f8fbff);
+  min-height: 100vh;
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 28px 20px 40px;
 }
 
 header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 26px;
 }
 
 header h1 {
-  margin-bottom: 8px;
+  margin: 0 0 8px;
+  font-size: 40px;
   color: var(--primary-dark);
+  letter-spacing: 0.5px;
 }
 
 header p {
+  margin: 0;
   color: var(--muted-color);
+  font-size: 16px;
 }

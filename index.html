@@ -12,53 +12,58 @@
 	      <h1>WeatherNow</h1>
 	      <p>Lab Exercise 3 - Fetch API and jQuery AJAX</p>
 	    </header>
-	    
+
 		<!----- Task 1 --->
 		<section class="card">
-	      <div class="search-box">
-	        <input type="text" id="cityInput" placeholder="Enter city name" />
-	        <button id="searchBtn">Search</button>
-	      </div>
+		  <section class="card search-card">
+		  <div class="search-box">
+		    <input type="text" id="cityInput" placeholder="Enter city name" />
+		    <button id="searchBtn">Search</button>
+		  </div>
 
-	      <div class="unit-box">
-	        <button class="unit-btn active" data-unit="C">°C</button>
-	        <button class="unit-btn" data-unit="F">°F</button>
-	      </div>
+		  <p id="validationMessage" class="message warning hidden"></p>
 
-	      <p id="validationMessage" class="message warning hidden"></p>
+		  <div id="errorBanner" class="message error hidden">
+		    <span id="errorText"></span>
+		    <button id="retryBtn">Retry</button>
+		  </div>
 
-	      <div id="errorBanner" class="message error hidden">
-	        <span id="errorText"></span>
-	        <button id="retryBtn">Retry</button>
-	      </div>
+		  <div id="recentSearches" class="recent-searches"></div>
+		</section>
 
-	      <div id="recentSearches" class="recent-searches"></div>
-	    </section>
+		<section class="card toggle-card">
+		  <h2>Temperature Unit</h2>
+		  <div class="unit-box">
+		    <button class="unit-btn active" data-unit="C">°C</button>
+		    <button class="unit-btn" data-unit="F">°F</button>
+		  </div>
+		</section>
 
-	    <section class="card">
-	      <h2>Current Weather</h2>
-	      <div class="current-weather">
-	        <div class="main-weather">
-	          <h3 id="cityName" class="skeleton">Loading</h3>
-	          <div id="weatherIcon" class="weather-icon skeleton">☀️</div>
-	          <p id="temperature" class="big-text skeleton">--</p>
-	          <p id="weatherDescription" class="skeleton">Loading</p>
-	        </div>
+		<section class="card current-card">
+		  <h2>Current Weather</h2>
+		  <div class="current-weather">
+		    <div class="main-weather">
+		      <h3 id="cityName" class="skeleton">Loading</h3>
+		      <div id="weatherIcon" class="weather-icon skeleton">☀️</div>
+		      <p id="temperature" class="big-text skeleton">--</p>
+		      <p id="weatherDescription" class="skeleton">Loading</p>
+		    </div>
 
-	        <div class="weather-details">
-	          <p><strong>Humidity:</strong> <span id="humidity" class="skeleton">--</span></p>
-	          <p><strong>Wind Speed:</strong> <span id="windSpeed" class="skeleton">--</span></p>
-	          <p><strong>Local Time:</strong> <span id="localTime" class="skeleton">--</span></p>
-	        </div>
-	      </div>
-	    </section>
+		    <div class="weather-details">
+		      <p><strong>Humidity:</strong> <span id="humidity" class="skeleton">--</span></p>
+		      <p><strong>Wind Speed:</strong> <span id="windSpeed" class="skeleton">--</span></p>
+		      <p><strong>Local Time:</strong> <span id="localTime" class="skeleton">--</span></p>
+		    </div>
+		  </div>
+		</section>
 
-	    <section class="card">
-	      <h2>7-Day Forecast</h2>
-	      <div id="forecastGrid" class="forecast-grid"></div>
-	    </section>
+		<section class="card forecast-card-section">
+		  <h2>7-Day Forecast</h2>
+		  <div id="forecastGrid" class="forecast-grid"></div>
+		</section>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   	<script src="app.js"></script>
 </body>
 </html>
