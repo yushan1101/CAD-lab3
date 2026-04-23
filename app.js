@@ -138,6 +138,59 @@ async function searchCity(input) {
     }
 }
 
+async function fetchJson(url) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    return await response.json();
+  } 
+  finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+function formatWeatherData(city, json) {
+  const currentCode = json.current_weather.weathercode;
+  const currentInfo = weatherCodes[currentCode] || { text: "Unknown", icon: "❔" };
+
+  const currentIndex = json.hourly.time.indexOf(json.current_weather.time);
+  const humidityValue =
+    currentIndex >= 0 ? json.hourly.relativehumidity_2m[currentIndex] : "N/A";
+
+  return {
+    city: `${city.name}, ${city.country}`,
+    timezone: city.timezone || json.timezone,
+    current: {
+      tempC: json.current_weather.temperature,
+      wind: json.current_weather.windspeed,
+      humidity: humidityValue,
+      text: currentInfo.text,
+      icon: currentInfo.icon
+    },
+    forecast: json.daily.time.map((date, index) => {
+      const codeInfo = weatherCodes[json.daily.weathercode[index]] || {
+        text: "Unknown",
+        icon: "❔"
+      };
+
+      return {
+        date: date,
+        icon: codeInfo.icon,
+        text: codeInfo.text,
+        max: json.daily.temperature_2m_max[index],
+        min: json.daily.temperature_2m_min[index]
+      };
+    })
+  };
+}
+
 function displayWeather(data) {
   //remove skeleton classes
     removeSkeleton(cityName);
@@ -200,6 +253,7 @@ function getLocalTime(timezone) {
       });
   }
 
+
 function showValidation(message) {
   validationMessage.textContent = message;
   validationMessage.classList.remove("hidden");
@@ -221,3 +275,14 @@ function hideError() {
 function removeSkeleton(el) {
     el.classList.remove("skeleton");
 }
+
+function showForecastSkeleton() {
+  forecastGrid.innerHTML = "";
+  for (let i = 0; i < 7; i++) {
+    const card = document.createElement("div");
+    card.className = "forecast-card skeleton";
+    card.innerHTML = "&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;";
+    forecastGrid.appendChild(card);
+  }
+}
+
