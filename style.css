@@ -1,4 +1,16 @@
-
+:root {
+  --bg-color: #f4f8ff;
+  --card-color: #ffffff;
+  --primary-color: #4f8cff;
+  --primary-dark: #2f6fe4;
+  --text-color: #1f2d3d;
+  --muted-color: #6b7a90;
+  --border-color: #dbe4f0;
+  --warning-bg: #fff4d6;
+  --warning-text: #9a6b00;
+  --error-bg: #ffe1e1;
+  --error-text: #b42318;
+}
 
 @keyframes shimmer {
   0% { background-position: -200% 0; }
