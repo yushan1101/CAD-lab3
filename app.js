@@ -104,6 +104,9 @@ async function searchCity(input) {
   const query = input.trim();
   state.lastQuery = query;
 
+  hideValidation();
+  hideError();
+
   if (query.length < 2) {
     showValidation("Please enter at least 2 characters.");
     return;
