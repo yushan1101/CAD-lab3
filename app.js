@@ -36,3 +36,19 @@
     weatherData: null,
     debounceTimer: null
   };
+
+const cityInput = document.getElementById("cityInput");
+const searchBtn = document.getElementById("searchBtn");
+const retryBtn = document.getElementById("retryBtn");
+
+async function searchCity(input) {
+  const query = input.trim();
+  state.lastQuery = query;
+
+  if (query.length < 2) {
+    showValidation("Please enter at least 2 characters.");
+    return;
+  }
+
+  showSkeleton();
+}
