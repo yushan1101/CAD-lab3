@@ -69,3 +69,29 @@ header p {
   color: var(--muted-color);
   font-size: 16px;
 }
+
+/* -------- Card -------*/
+.card {
+  background: var(--card-color);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 24px;
+  color: var(--primary-dark);
+}
+
+/*------ Search Section ---------*/
+.search-card,.toggle-card {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
