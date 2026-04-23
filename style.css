@@ -95,3 +95,45 @@ header p {
   margin-left: auto;
   margin-right: auto;
 }
+
+.search-box input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.search-box input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.12);
+}
+
+.search-box button,
+#retryBtn,
+.unit-btn,
+.chip {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.search-box button,
+#retryBtn {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 8px 18px rgba(79, 140, 255, 0.22);
+}
+
+.search-box button:hover,
+#retryBtn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
