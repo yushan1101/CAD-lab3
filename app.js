@@ -54,6 +54,13 @@ const forecastGrid = document.getElementById("forecastGrid");
 const recentSearches = document.getElementById("recentSearches");
 const unitButtons = document.querySelectorAll(".unit-btn");
 
+function init() {
+  showForecastSkeleton();
+  loadRecentSearches();
+  bindEvents();
+  searchCity("Kuala Lumpur");
+}
+
 /*--------- Button click -----*/
 function bindEvents() {
   searchBtn.addEventListener("click", () => searchCity(cityInput.value));
@@ -315,3 +322,33 @@ function clearDisplay() {
   displayForecast([]);
 }
 
+function saveRecentSearch(city) {
+  let items = JSON.parse(localStorage.getItem("recentCities")) || [];
+  items = [city, ...items.filter((item) => item.toLowerCase() !== city.toLowerCase())];
+  items = items.slice(0, 5);
+  localStorage.setItem("recentCities", JSON.stringify(items));
+  renderRecentSearches(items);
+}
+
+function loadRecentSearches() {
+  const items = JSON.parse(localStorage.getItem("recentCities")) || [];
+  renderRecentSearches(items);
+}
+
+function renderRecentSearches(items) {
+  recentSearches.innerHTML = "";
+
+  items.forEach((city) => {
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.textContent = city;
+    chip.addEventListener("click", () => {
+      cityInput.value = city;
+      searchCity(city);
+    });
+    recentSearches.appendChild(chip);
+  });
+}
+
+  init();
+})();
