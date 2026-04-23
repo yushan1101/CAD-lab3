@@ -253,6 +253,16 @@ function getLocalTime(timezone) {
       });
   }
 
+function convertTemp(celsius) {
+  if (state.unit === "F") {
+    return Math.round((celsius * 9) / 5 + 32);
+  }
+  return Math.round(celsius);
+}
+
+function getDayName(dateString) {
+  return new Date(dateString).toLocaleDateString("en-US", { weekday: "short" });
+}
 
 function showValidation(message) {
   validationMessage.textContent = message;
@@ -272,6 +282,14 @@ function hideError() {
   errorBanner.classList.add("hidden");
 }
 
+function showSkeleton() {
+  [cityName, weatherIcon, temperature, weatherDescription, humidity, windSpeed, localTime]
+    .forEach((el) => el.classList.add("skeleton"));
+
+  showForecastSkeleton();
+  localTime.dataset.loaded = "";
+}
+
 function removeSkeleton(el) {
     el.classList.remove("skeleton");
 }
@@ -284,5 +302,16 @@ function showForecastSkeleton() {
     card.innerHTML = "&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;";
     forecastGrid.appendChild(card);
   }
+}
+
+function clearDisplay() {
+  cityName.textContent = "No city found";
+  weatherIcon.textContent = "❔";
+  temperature.textContent = "--";
+  weatherDescription.textContent = "No data";
+  humidity.textContent = "--";
+  windSpeed.textContent = "--";
+  localTime.textContent = new Date().toLocaleString();
+  displayForecast([]);
 }
 
