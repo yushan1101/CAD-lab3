@@ -185,3 +185,25 @@ header p {
   align-items: center;
   gap: 12px;
 }
+
+.hidden {
+  display: none;
+}
+
+.recent-searches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  background: var(--chip-bg);
+  color: var(--primary-dark);
+  padding: 10px 14px;
+  border: 1px solid #d9e6ff;
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  background: #e3edff;
+}
