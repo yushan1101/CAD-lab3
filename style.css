@@ -29,6 +29,8 @@
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 4px;
+
+  color: transparent;
 }
 
 * {
@@ -90,7 +92,7 @@ header p {
 }
 
 /*------ Search Section ---------*/
-.search-card,.toggle-card {
+.search-card{
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
@@ -145,18 +147,33 @@ header p {
 }
 
 /*--------- Temperature Toggle ------*/
-.unit-box {
+.toggle-card {
   display: flex;
-  justify-content: center;
-  gap: 12px;
+  justify-content: flex-end;
+  margin: 10px 0 20px;
+}
+
+.unit-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 5px;
+  border-radius: 999px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 
 .unit-btn {
-  min-width: 90px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #64748b;
+  font-size: 14px;
   font-weight: bold;
-  background: #eef4ff;
-  color: var(--primary-dark);
-  border: 1px solid #d8e5ff;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .unit-btn:hover {
@@ -164,10 +181,9 @@ header p {
 }
 
 .unit-btn.active {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background: #38bdf8; /* light blue */
   color: white;
-  border-color: transparent;
-  box-shadow: 0 8px 18px rgba(79, 140, 255, 0.22);
+  box-shadow: 0 3px 8px rgba(56, 189, 248, 0.3);
 }
 
 /*----- Error meg ------*/
