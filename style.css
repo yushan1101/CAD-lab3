@@ -163,3 +163,25 @@ header p {
   border-color: transparent;
   box-shadow: 0 8px 18px rgba(79, 140, 255, 0.22);
 }
+
+/*----- Error meg ------*/
+.message {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.warning {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
