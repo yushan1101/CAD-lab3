@@ -16,39 +16,40 @@
 	    </header>
 
 		<!----- Task 1 --->
-		<section class="card">
-		  <section class="card search-card">
-		  <div class="search-box">
-		    <input type="text" id="cityInput" placeholder="Enter city name" />
-		    <button id="searchBtn">Search</button>
-		  </div>
+		
+		  	<section class="card search-card">
+			  <div class="search-box">
+			    <input type="text" id="cityInput" placeholder="Enter city name" />
+			    <button id="searchBtn">Search</button>
+			  </div>
 
-		  <p id="validationMessage" class="message warning hidden"></p>
+			  <p id="validationMessage" class="message warning hidden"></p>
 
-		  <div id="errorBanner" class="message error hidden">
-		    <span id="errorText"></span>
-		    <button id="retryBtn">Retry</button>
-		  </div>
+			  <div id="errorBanner" class="message error hidden">
+			    <span id="errorText"></span>
+			    <button id="retryBtn">Retry</button>
+			  </div>
 
-		  <div id="recentSearches" class="recent-searches"></div>
-		</section>
+			  <div id="recentSearches" class="recent-searches"></div>
+			</section>
 
-		<section class="card toggle-card">
-		  <h2>Temperature Unit</h2>
+
+		<section class="toggle-card">
 		  <div class="unit-box">
 		    <button class="unit-btn active" data-unit="C">°C</button>
 		    <button class="unit-btn" data-unit="F">°F</button>
 		  </div>
 		</section>
+	
 
 		<section class="card current-card">
 		  <h2>Current Weather</h2>
 		  <div class="current-weather">
 		    <div class="main-weather">
-		      <h3 id="cityName" class="skeleton">Loading</h3>
-		      <div id="weatherIcon" class="weather-icon skeleton">☀️</div>
-		      <p id="temperature" class="big-text skeleton">--</p>
-		      <p id="weatherDescription" class="skeleton">Loading</p>
+		      <div id="cityName" class="skeleton"></div>
+		      <div id="weatherIcon" class="weather-icon skeleton"></div>
+		      <div id="temperature" class="big-text skeleton"></div>
+		      <div id="weatherDescription" class="skeleton"></div>
 		    </div>
 
 		    <div class="weather-details">
