@@ -155,7 +155,50 @@ function displayWeather(data) {
     weatherDescription.textContent = data.current.text;
     humidity.textContent = `${data.current.humidity}%`;
     windSpeed.textContent = `${data.current.wind} km/h`;
+
+    if (!localTime.dataset.loaded) {
+      localTime.textContent = new Date().toLocaleString();
+    }
+
+    displayForecast(data.forecast);
 }
+
+function displayForecast(forecast) {
+  forecastGrid.innerHTML = "";
+
+  forecast.forEach((day) => {
+    const card = document.createElement("div");
+    card.className = "forecast-card";
+    card.innerHTML = `
+      <p class="day-name">${getDayName(day.date)}</p>
+      <p class="forecast-icon">${day.icon}</p>
+      <p class="forecast-text">${day.text}</p>
+      <p class="forecast-temp">${convertTemp(day.max)}° / ${convertTemp(day.min)}°</p>
+    `;
+    forecastGrid.appendChild(card);
+  });
+}
+
+function getLocalTime(timezone) {
+    if (!timezone) {
+      localTime.textContent = new Date().toLocaleString();
+      localTime.dataset.loaded = "fallback";
+      return;
+    }
+
+    $.getJSON(`https://worldtimeapi.org/api/timezone/${timezone}`)
+      .done(function (timeData) {
+        localTime.textContent = new Date(timeData.datetime).toLocaleString();
+        localTime.dataset.loaded = "api";
+      })
+      .fail(function () {
+        localTime.textContent = new Date().toLocaleString();
+        localTime.dataset.loaded = "fallback";
+      })
+      .always(function () {
+        console.log("Time request completed at:", new Date().toISOString());
+      });
+  }
 
 function showValidation(message) {
   validationMessage.textContent = message;
