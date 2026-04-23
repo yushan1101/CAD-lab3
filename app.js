@@ -90,6 +90,7 @@ async function searchCity(input) {
 }
 
 function displayWeather(data) {
+  //remove skeleton classes
     removeSkeleton(cityName);
     removeSkeleton(weatherIcon);
     removeSkeleton(temperature);
@@ -97,6 +98,14 @@ function displayWeather(data) {
     removeSkeleton(humidity);
     removeSkeleton(windSpeed);
     removeSkeleton(localTime);
+
+    //populate all UI cards with real data
+    cityName.textContent = data.city;
+    weatherIcon.textContent = data.current.icon;
+    temperature.textContent = `${convertTemp(data.current.tempC)}°${state.unit}`;
+    weatherDescription.textContent = data.current.text;
+    humidity.textContent = `${data.current.humidity}%`;
+    windSpeed.textContent = `${data.current.wind} km/h`;
 }
 
 function removeSkeleton(el) {
