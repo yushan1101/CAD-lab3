@@ -40,6 +40,19 @@
 const cityInput = document.getElementById("cityInput");
 const searchBtn = document.getElementById("searchBtn");
 const retryBtn = document.getElementById("retryBtn");
+const validationMessage = document.getElementById("validationMessage");
+const errorBanner = document.getElementById("errorBanner");
+const errorText = document.getElementById("errorText");
+const cityName = document.getElementById("cityName");
+const weatherIcon = document.getElementById("weatherIcon");
+const temperature = document.getElementById("temperature");
+const weatherDescription = document.getElementById("weatherDescription");
+const humidity = document.getElementById("humidity");
+const windSpeed = document.getElementById("windSpeed");
+const localTime = document.getElementById("localTime");
+const forecastGrid = document.getElementById("forecastGrid");
+const recentSearches = document.getElementById("recentSearches");
+const unitButtons = document.querySelectorAll(".unit-btn");
 
 async function searchCity(input) {
   const query = input.trim();
@@ -56,6 +69,7 @@ async function searchCity(input) {
     const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`;
     const geoData = await fetchJson(geoUrl);
 
+    //If no results
     if (!geoData.results || geoData.results.length === 0) {
       showValidation("City not found. Please try another city.");
       clearDisplay();
@@ -64,9 +78,27 @@ async function searchCity(input) {
 
     const city = geoData.results[0];
 
+    //Get weather
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
     const weatherJson = await fetchJson(weatherUrl);
 
+    //Format the data
     const data = formatWeatherData(city, weatherJson);
     state.weatherData = data;
+
+    displayWeather(data);
+}
+
+function displayWeather(data) {
+    removeSkeleton(cityName);
+    removeSkeleton(weatherIcon);
+    removeSkeleton(temperature);
+    removeSkeleton(weatherDescription);
+    removeSkeleton(humidity);
+    removeSkeleton(windSpeed);
+    removeSkeleton(localTime);
+}
+
+function removeSkeleton(el) {
+    el.classList.remove("skeleton");
 }
