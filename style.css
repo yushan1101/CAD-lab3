@@ -270,3 +270,27 @@ header p {
 .weather-details strong {
   color: var(--primary-dark);
 }
+
+/*--------- Weather Forecasting ----------*/
+
+.forecast-card .day-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.forecast-card .forecast-icon {
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+.forecast-card .forecast-text {
+  min-height: 34px;
+  color: var(--muted-color);
+  font-size: 13px;
+}
+
+.forecast-card .forecast-temp {
+  font-weight: 700;
+  font-size: 15px;
+}
