@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>WeatherNow</title>
+</head>
+
+<body>
+	<div>
+		<!----- Task 1 --->
+		<div class="search-row">
+	        <input id="cityInput" type="text" placeholder="Enter city name">
+	        <button id="searchBtn">Search</button>
+	     </div>
+
+	     <div class="card">
+	      <h2>Current Weather</h2>
+	      <div class="current-weather">
+	        <div class="main-weather">
+	          <div id="cityName" class="skeleton line title"></div>
+	          <div id="weatherIcon" class="weather-icon skeleton box"></div>
+	          <div id="temperature" class="skeleton line temp"></div>
+	          <div id="weatherDescription" class="skeleton line"></div>
+	        </div>
+
+	        <div class="weather-details">
+	          <p><strong>Humidity:</strong> <span id="humidity" class="skeleton line small"></span></p>
+	          <p><strong>Wind Speed:</strong> <span id="windSpeed" class="skeleton line small"></span></p>
+	          <p><strong>Local Time:</strong> <span id="localTime" class="skeleton line small"></span></p>
+	        </div>
+	      </div>
+	    </div>
+	</div>
+
+  	<script src="app.js"></script>
+</body>
+</html>
