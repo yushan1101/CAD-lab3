@@ -122,6 +122,11 @@ async function searchCity(input) {
     if (!geoData.results || geoData.results.length === 0) {
       showValidation("City not found. Please try another city.");
       clearDisplay();
+
+      // Show browser local time (fallback)
+      removeSkeleton(localTime);
+      localTime.textContent = new Date().toLocaleString();
+      localTime.dataset.loaded = "fallback";
       return;
     }
 
@@ -322,6 +327,8 @@ function clearDisplay() {
   humidity.textContent = "--";
   windSpeed.textContent = "--";
   localTime.textContent = new Date().toLocaleString();
+  localTime.dataset.loaded = "fallback";
+  
   displayForecast([]);
 }
 
