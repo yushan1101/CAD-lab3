@@ -113,6 +113,7 @@ async function searchCity(input) {
   }
 
   showSkeleton();
+  showForecastSkeleton();
 
   try {
     const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`;
@@ -311,10 +312,18 @@ function removeSkeleton(el) {
 
 function showForecastSkeleton() {
   forecastGrid.innerHTML = "";
+
   for (let i = 0; i < 7; i++) {
     const card = document.createElement("div");
-    card.className = "forecast-card skeleton";
-    card.innerHTML = "&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;";
+    card.className = "forecast-card forecast-skeleton-card";
+
+    card.innerHTML = `
+      <div class="skeleton skeleton-line"></div>
+      <div class="skeleton skeleton-icon"></div>
+      <div class="skeleton skeleton-line"></div>
+      <div class="skeleton skeleton-line short"></div>
+    `;
+
     forecastGrid.appendChild(card);
   }
 }
@@ -328,7 +337,7 @@ function clearDisplay() {
   windSpeed.textContent = "--";
   localTime.textContent = new Date().toLocaleString();
   localTime.dataset.loaded = "fallback";
-  
+
   displayForecast([]);
 }
 
